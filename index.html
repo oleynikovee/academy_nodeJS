@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NodeJS</title>
+    </head>
+    <body>
+        <header>NODE JS LECTIONS</header>
+        <div class="main">
+        </div>
+        <script>
+            console.log('lest do some get');
+        let response =async()=>{ 
+            let res=await fetch('127.0.0.1:300/getjson');
+            if (res.ok) { 
+                let json = await res.json();
+                data=JSON.parse(JSON.stringify(json));
+                printAll(data);
+            } else {
+                alert("Ошибка HTTP: " + res.status);
+            }
+        }
+
+        const printAll=(data)=>{
+            const mainSelector=document.querySelector('.main');
+            data.forEach(el=>{
+                const divSelector=document.createElement('div');
+                const nameSelector=document.createElement('p');
+                const lastNameSelector=document.createElement('p');
+                const ageSelector=document.createElement('p');
+                nameSelector.textContent=el.name;
+                lastNameSelector.textContent=el.lastName;
+                ageSelector.textContent=el.age;
+                divSelector.appendChild(nameSelector);
+                divSelector.appendChild(lastNameSelector);
+                divSelector.appendChild(ageSelector);
+                mainSelector.appendChild(divSelector);
+            });
+        }
+        response();
+        </script>
+    </body>
+</html>
